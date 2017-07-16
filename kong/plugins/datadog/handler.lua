@@ -53,6 +53,11 @@ local function log(premature, conf, message)
   if premature then
     return
   end
+
+  if not message.api then -- unmatched apis are nil
+    return
+  end
+
   local logger, err = statsd_logger:new(conf)
   if err then
     ngx.log(ngx.ERR, "failed to create Statsd logger: ", err)
