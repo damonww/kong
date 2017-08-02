@@ -209,6 +209,6 @@ describe("Plugin: datadog (log)", function()
     assert.res_status(404, res)
     
     local err_log = pl_file.read(helpers.test_conf.nginx_err_logs)
-    assert.is_nil(err_log:find("attempt to index field 'api' (a nil value)", nil, true))
+    assert.not_matches("attempt to index field 'api' (a nil value)", err_log, nil, true)
   end)
 end)
